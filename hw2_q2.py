@@ -29,3 +29,14 @@ def meetup(agent_listing: tuple) -> list:
         A list of Agents with their 'category' field changed according to the result
         of the meeting.
     """
+    update_listing = [] 
+
+    # handle healthy and dead agents 
+    healthy_and_dead = [agent for agent in agent_listing 
+                        if agent.category == Condition.HEALTHY or agent.category == Condition.DEAD]
+    
+    print(healthy_and_dead)
+
+data1 = (Agent("Buddy", Condition.CURE), Agent("Holly", Condition.DEAD))
+
+meetup(data1)

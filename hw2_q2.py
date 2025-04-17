@@ -30,11 +30,12 @@ def meetup(agent_listing: tuple) -> list:
         of the meeting.
     """
 
-    update_listing = [] 
-    sick_and_cure = [] 
+    update_listing = [] # agents' updated condition
+    sick_and_cure = [] # agents that will participate in a meeting
 
     for agent in agent_listing: 
-        if agent.category == Condition.HEALTHY or agent.category == Condition.DEAD:
+        # add healthy and dead to the updated list w/o any change 
+        if agent.category == Condition.HEALTHY or agent.category == Condition.DEAD: 
             update_listing.append(agent)
         else: 
             sick_and_cure.append(agent)
@@ -74,7 +75,7 @@ def pair_up(agent_listing: tuple) -> list:
     for i in range (0, len(agent_listing), 2): 
         if i+1 < len(agent_listing):
             paired_list.append((agent_listing[i] , agent_listing[i+1]))
-        else: 
+        else: # in case of odd number of agents, leave the lat one alone
             paired_list.append((agent_listing[i],))
     
     return paired_list
@@ -132,7 +133,7 @@ def post_meetup_condition(pair: tuple) -> tuple:
         A list of Agents with their 'category' field changed according to the result
         of the meeting.
     """
-    # if single
+    # if single return as is
     if len(pair) == 1:
             return pair
     

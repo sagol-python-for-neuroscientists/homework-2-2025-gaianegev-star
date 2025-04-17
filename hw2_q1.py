@@ -37,3 +37,11 @@ def english_to_morse(
         Name of output file containing the translated Morse code. Please don't change
         it since it's also hard-coded in the tests file.
     """
+    with open(input_file, 'r') as input, open(output_file, 'w') as output:
+        output.write('\n'.join(map(
+        lambda word: ' '.join(MORSE_CODE.get(char.upper(), '') for char in word if char.upper() in MORSE_CODE),
+        input.read().split()
+        )
+    ))    
+
+    
